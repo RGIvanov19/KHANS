@@ -1,6 +1,11 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+struct Node {
+
+    int data;
+    Node* next;
+};
 int decToBin(int n)
 {
     int number = 0;
@@ -30,6 +35,37 @@ int numToGray(int n)
     return gray;
 
     
+}
+void deleteNode(Node** head_ref, int key)
+{
+    Node* temp = *head_ref;
+    Node* prev = NULL;
+    if (temp != NULL && temp->data == key)
+    {
+        *head_ref = temp->next;
+        delete temp;
+        return;
+    }
+    else
+    {
+        while (temp != NULL && temp->data != key)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+        if (temp == NULL)
+            return;
+        prev->next = temp->next;
+        delete temp;
+    }
+}
+void printList(Node* node)
+{
+    while (node != NULL)
+    {
+        cout << node->data << " ";
+        node = node->next;
+    }
 }
 int main()
 {
