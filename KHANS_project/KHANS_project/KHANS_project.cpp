@@ -72,5 +72,6 @@ int main()
     int n;
     cin >> n;
     int gray = numToGray(n);
+   
 
 }

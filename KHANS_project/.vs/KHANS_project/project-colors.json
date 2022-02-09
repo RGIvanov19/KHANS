@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "74e97d83-b5af-4d3d-adf7-a250959bc3a1": {
+      "ProjectGuid": "74e97d83-b5af-4d3d-adf7-a250959bc3a1",
+      "DisplayName": "KHANS_project",
+      "ColorIndex": 0
+    },
+    "e1aaacb7-2963-40c4-b754-cc6dc59433c2": {
+      "ProjectGuid": "e1aaacb7-2963-40c4-b754-cc6dc59433c2",
+      "DisplayName": "UNITTEST",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
