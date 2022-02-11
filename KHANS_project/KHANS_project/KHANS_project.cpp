@@ -66,6 +66,30 @@ int findLinkedListLength(Event* head) {
     return counter;
 }
 
+void removeEvent(Event* head, int eventPosition) {
+    int counter = 1;
+    //if we want to remove the first event
+    if (eventPosition == 1) {
+        eventPosition = 2;
+        swapValues(head, head->next);
+    }
+
+    while (counter != eventPosition - 1) {
+        head = head->next;
+        counter++;
+    }
+
+    //if we want to remove the last event
+    if (eventPosition == findLinkedListLength(head)) {
+        eventPosition = findLinkedListLength(head) - 1;
+        swapValues(head, head->next);
+    }
+
+    Event* elementToDelete = head->next;
+    head->next = head->next->next;
+    delete elementToDelete;
+}
+
 int main()
 {
     int n;
