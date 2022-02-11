@@ -50,6 +50,11 @@ void printList(Event* head) {
     }
 }
 
+long int calcDate(Event* event) {
+    long int date = event->year * 10000 + event->month * 100 + event->day;
+    return date;
+}
+
 void swapValues(Event* head, Event* newEvent) {
     int tempDay = newEvent->day;
     int tempMonth = newEvent->month;
