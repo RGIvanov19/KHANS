@@ -88,6 +88,30 @@ Event* findTail(Event* head) {
     return head;
 }
 
+void sortEvents(Event* head, Event* newEvent, Event* tail) {
+    Event* current = head;
+    bool isSorted = false;
+    while (current->next != NULL && isSorted == false) {
+        Event* currentNext = current->next;
+        if (calcDate(newEvent) > calcDate(currentNext)) {
+            current = current->next;
+        }
+
+        /*if (calcDate(newEvent) == calcDate(head)) {
+            cout << "This event already exist"
+        }*/
+        else {
+            tail->next = NULL;
+            newEvent->next = current->next;
+            current->next = newEvent;
+            if (current == head) {
+                swapValues(head, newEvent);
+            }
+            isSorted = true;
+        }
+    }
+}
+
 void getNewEvent(Event*& newEvent) {
     cout << "When the event happened" << endl;
     cout << "Day: ";
