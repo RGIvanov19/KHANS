@@ -81,6 +81,14 @@ int findLinkedListLength(Event* head) {
     return counter;
 }
 
+Event* findTail(Event* head) {
+    while (head->next != NULL) {
+        head = head->next;
+    }
+    return head;
+}
+
+
 void removeEvent(Event* head, int eventPosition) {
     int counter = 1;
     //if we want to remove the first event
