@@ -1,11 +1,14 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-struct Node {
-
-    int data;
-    Node* next;
+struct Event {
+    int day;
+    int month;
+    int year;
+    string whatHappened;
+    Event* next = NULL;
 };
+
 int decToBin(int n)
 {
     int number = 0;
@@ -36,37 +39,25 @@ int numToGray(int n)
 
     
 }
-void deleteNode(Node** head_ref, int key)
-{
-    Node* temp = *head_ref;
-    Node* prev = NULL;
-    if (temp != NULL && temp->data == key)
-    {
-        *head_ref = temp->next;
-        delete temp;
-        return;
-    }
-    else
-    {
-        while (temp != NULL && temp->data != key)
-        {
-            prev = temp;
-            temp = temp->next;
-        }
-        if (temp == NULL)
-            return;
-        prev->next = temp->next;
-        delete temp;
-    }
+
+void swapValues(Event* head, Event* newEvent) {
+    int tempDay = newEvent->day;
+    int tempMonth = newEvent->month;
+    int tempYear = newEvent->year;
+    string tempWhatHappened = newEvent->whatHappened;
+
+    newEvent->day = head->day;
+    newEvent->month = head->month;
+    newEvent->year = head->year;
+    newEvent->whatHappened = head->whatHappened;
+
+    head->day = tempDay;
+    head->month = tempMonth;
+    head->year = tempYear;
+    head->whatHappened = tempWhatHappened;
 }
-void printList(Node* node)
-{
-    while (node != NULL)
-    {
-        cout << node->data << " ";
-        node = node->next;
-    }
-}
+
+
 int main()
 {
     int n;
