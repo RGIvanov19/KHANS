@@ -40,6 +40,16 @@ int numToGray(int n)
     
 }
 
+void printList(Event* head) {
+    int counter = 1;
+    while (head != NULL)
+    {
+        cout << counter << " --> " << head->day << "." << head->month << "." << head->year << " " << head->whatHappened << endl;
+        head = head->next;
+        counter++;
+    }
+}
+
 void swapValues(Event* head, Event* newEvent) {
     int tempDay = newEvent->day;
     int tempMonth = newEvent->month;
