@@ -88,6 +88,19 @@ Event* findTail(Event* head) {
     return head;
 }
 
+void getNewEvent(Event*& newEvent) {
+    cout << "When the event happened" << endl;
+    cout << "Day: ";
+    cin >> newEvent->day;
+    cout << endl << "Month: ";
+    cin >> newEvent->month;
+    cout << endl << "Year: ";
+    cin >> newEvent->year;
+    cout << endl << "What happened: ";
+    cin >> newEvent->whatHappened;
+
+}
+
 
 void removeEvent(Event* head, int eventPosition) {
     int counter = 1;
@@ -112,6 +125,8 @@ void removeEvent(Event* head, int eventPosition) {
     head->next = head->next->next;
     delete elementToDelete;
 }
+
+
 
 int main()
 {
