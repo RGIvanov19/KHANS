@@ -57,6 +57,14 @@ void swapValues(Event* head, Event* newEvent) {
     head->whatHappened = tempWhatHappened;
 }
 
+int findLinkedListLength(Event* head) {
+    int counter = 1;
+    while (head->next != NULL) {
+        head = head->next;
+        counter++;
+    }
+    return counter;
+}
 
 int main()
 {
