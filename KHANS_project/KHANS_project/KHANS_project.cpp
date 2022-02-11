@@ -101,6 +101,13 @@ void getNewEvent(Event*& newEvent) {
 
 }
 
+void addNewEvent(Event* head) {
+    Event* Tail = findTail(head);
+    Event* newEvent = new Event;
+    getNewEvent(newEvent);
+    Tail->next = newEvent;
+    sortEvents(head, newEvent, Tail);
+}
 
 void removeEvent(Event* head, int eventPosition) {
     int counter = 1;
