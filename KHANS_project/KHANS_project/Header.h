@@ -87,3 +87,8 @@ void optionPlay() {
 
 	}
 }
+
+void optionInstructions() {
+	system("cls");
+	cout << "You have the choice to either search or add an event.";
+}
