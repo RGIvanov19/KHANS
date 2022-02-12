@@ -1,1 +1,5 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(436,5): error MSB8020: The build tools for Visual Studio 2019 (Platform Toolset = 'v142') cannot be found. To build using the v142 build tools, please install Visual Studio 2019 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+﻿  KHANS_project.cpp
+C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\Header.h(57,9): error C3861: '_getch': identifier not found
+C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\Header.h(121,9): error C3861: '_getch': identifier not found
+C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(23,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(40,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data

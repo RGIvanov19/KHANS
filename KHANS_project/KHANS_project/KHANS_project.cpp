@@ -1,6 +1,11 @@
+#pragma once
 #include <iostream>
+#include <windows.h>
+#include <iomanip>
 #include <math.h>
+#include "Header.h"
 using namespace std;
+
 struct Event {
     int day;
     int month;
@@ -161,9 +166,15 @@ void removeEvent(Event* head, int eventPosition) {
 
 int main()
 {
+
     int n;
     cin >> n;
     int gray = numToGray(n);
    
+    printName();
+
+    printOptions();
+
+    return 0;
 
 }
