@@ -92,3 +92,59 @@ void optionInstructions() {
 	system("cls");
 	cout << "You have the choice to either search or add an event.";
 }
+
+void printOptions() {
+	int Set[] = { 7,7,7 };
+	int counter = 2;
+	char key;
+
+	for (int i = 0; i < 100; i++)
+	{
+		gotoxy(10, 10);
+		color(Set[0]);
+		cout << "                     << Play >>";
+
+		gotoxy(10, 11);
+		color(Set[1]);
+		cout << "                     << Instructions >>";
+
+		gotoxy(10, 12);
+		color(Set[2]);
+		cout << "                     << Exit >>";
+
+		key = _getch();
+
+		if (key == 72 && (counter >= 2 && counter <= 3)) {
+			counter--;
+		}
+		if (key == 80 && (counter >= 1 && counter <= 2)) {
+			counter++;
+		}
+		if (key == '\r') {
+			if (counter == 1) {
+				optionPlay();
+			}
+			if (counter == 2) {
+				optionInstructions();
+			}
+			if (counter == 3) {
+				break;
+			}
+		}
+		Set[0] = 7;
+		Set[1] = 7;
+		Set[2] = 7;
+
+		if (counter == 1) {
+			Set[0] = 12;
+		}
+		if (counter == 2) {
+			Set[1] = 12;
+		}
+		if (counter == 3) {
+			Set[2] = 12;
+		}
+
+	}
+
+}
