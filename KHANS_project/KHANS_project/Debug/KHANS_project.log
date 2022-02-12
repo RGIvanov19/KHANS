@@ -1,4 +1,4 @@
 ﻿  KHANS_project.cpp
-C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(23,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(40,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Matilda-AL\Documents\Project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(176,5): error C3861: 'printOptions': identifier not found
+C:\Users\rados\Documents\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(86,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\rados\Documents\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(103,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  KHANS_project.vcxproj -> C:\Users\rados\Documents\KHANS\KHANS_project\Debug\KHANS_project.exe
