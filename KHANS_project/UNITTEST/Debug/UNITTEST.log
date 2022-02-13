@@ -1,0 +1,6 @@
+﻿  pch.cpp
+  UNITTEST.cpp
+C:\Users\User\Desktop\project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(86,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Desktop\project\KHANS\KHANS_project\KHANS_project\KHANS_project.cpp(103,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     Creating library C:\Users\User\Desktop\project\KHANS\KHANS_project\Debug\UNITTEST.lib and object C:\Users\User\Desktop\project\KHANS\KHANS_project\Debug\UNITTEST.exp
+  UNITTEST.vcxproj -> C:\Users\User\Desktop\project\KHANS\KHANS_project\Debug\UNITTEST.dll
