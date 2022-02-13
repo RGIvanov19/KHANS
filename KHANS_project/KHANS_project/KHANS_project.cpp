@@ -370,7 +370,7 @@ void printOptions(Event* head) {
 
         gotoxy(40, 7);
         color(Set[0]);
-        cout << "<< Виж списък със свички събития >>";
+        cout << "<< Виж списък със всички събития >>";
 
         gotoxy(40, 8);
         color(Set[1]);
