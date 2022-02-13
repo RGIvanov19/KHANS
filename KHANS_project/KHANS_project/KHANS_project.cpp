@@ -248,10 +248,6 @@ void sortEvents(Event* head, Event* newEvent, Event* tail) {
         if (calcDate(newEvent) > calcDate(currentNext)) {
             current = current->next;
         }
-
-        /*if (calcDate(newEvent) == calcDate(head)) {
-            cout << "This event already exist"
-        }*/
         else {
             tail->next = NULL;
             newEvent->next = current->next;
@@ -314,6 +310,23 @@ Event* findTail(Event* head) {
     return head;
 }
 
+void moveToEnd(Event* head, Event* eventToMove) {
+    Event* tail = findTail(head);
+    Event* current = head;
+    while (current->next != eventToMove && current->next != NULL) {
+        current = current->next;
+    }
+    if (current->next->next == NULL) {
+        current->next = NULL;
+    }
+    else {
+        current->next = current->next->next;
+    }
+    eventToMove->next = NULL;
+    tail->next = eventToMove;
+    sortEvents(head, eventToMove, tail);
+}
+
 void addNewEvent(Event* head) {
     Event* Tail = findTail(head);
     Event* newEvent = new Event;
@@ -355,7 +368,7 @@ void editEvent(Event* head, int eventPosition) {
     }
     getNewData(åditOptions(), current);
     //not working
-    //sortEvents(head, current, findTail(head));
+    moveToEnd(head, current);
 }
 
 void printOptions(Event* head) {
@@ -363,7 +376,6 @@ void printOptions(Event* head) {
     int counter = 2;
     char key;
 
-    //for (int i = 0; i < 100; i++)
     while (1) {
         /*gotoxy(35, 5);
         cout << "_____________________________________________";*/
@@ -531,7 +543,5 @@ int main() {
 
     return 0;
 }
-
-
 
 
