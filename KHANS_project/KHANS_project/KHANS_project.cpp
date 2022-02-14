@@ -1,4 +1,3 @@
-//#pragma once
 #include <iostream>
 #include <locale>
 #include <string>
@@ -6,9 +5,8 @@
 #include <iomanip>
 #include <math.h>
 #include <conio.h>
-#include <stdlib.h>
+#include <cstdlib>
 
-//#include "Header.h"
 using namespace std;
 
 struct Event {
@@ -21,7 +19,7 @@ struct Event {
 
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
-//find out how this works
+//needed for being able to input in bulgarian
 string toBG(string text) {
     char bgText[1000];
     OemToCharA(text.c_str(), bgText);
@@ -43,19 +41,46 @@ void printName() {
 )" << endl;
 }
 
-int positionToRemove()
+int findLinkedListLength(Event* head) {
+    int counter = 1;
+    while (head->next != NULL) {
+        head = head->next;
+        counter++;
+    }
+    return counter;
+}
+
+//gets the position of the event that is going to be removed
+int positionToRemove(Event* head)
 {
     int pos;
-    cout << "Въведете номера на събитието, което искате да премахнете: ";
-    cin >> pos;
+    do {
+        cout << endl;
+        cout << "Въведете номера на събитието, което искате да премахнете: ";
+        cin >> pos;
+        //if incorrect data is inputted
+        if (pos < 1 || pos > findLinkedListLength(head)) {
+            cout << "Изглежда сте въвели некоректни данни :(" << endl;
+            cout << "Опитайте отново" << endl << endl;
+        }
+    } while (pos < 1 || pos > findLinkedListLength(head));
     return pos;
 }
 
-int positionToEdit()
+//gets the position of the event that is going to be edited
+int positionToEdit(Event* head)
 {
     int pos;
-    cout << "Въведете номера на събитието, което искате да редактирате: ";
-    cin >> pos;
+    do {
+        cout << endl;
+        cout << "Въведете номера на събитието, което искате да редактирате: ";
+        cin >> pos;
+        //if incorrect data is inputted
+        if (pos < 1 || pos > findLinkedListLength(head)) {
+            cout << "Изглежда сте въвели некоректни данни :(" << endl;
+            cout << "Опитайте отново" << endl << endl;
+        }
+    } while (pos < 1 || pos > findLinkedListLength(head));
     return pos;
 }
 
@@ -63,6 +88,7 @@ void color(int color) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
+//leaves space before output
 void gotoxy(int x, int y)
 {
     COORD c;
@@ -106,12 +132,13 @@ int decToGray() {
     return gray;
 }
 
+//prints all events
 void printList(Event* head) {
     int counter = 1;
     int row = 17;
     while (head != NULL)
     {
-        gotoxy(10, row);
+        gotoxy(22, row);
         cout << counter << " --> " << head->day << "." << head->month << "." << head->year << " - " << head->whatHappened << endl;
         head = head->next;
         counter++;
@@ -125,7 +152,7 @@ void printEventsBefore1900(Event* head) {
     while (head != NULL)
     {
         if (head->year < 1900) {
-            gotoxy(10, row);
+            gotoxy(22, row);
             cout << counter << " --> " << head->day << "." << head->month << "." << head->year << " - " << head->whatHappened << endl;
             counter++;
             row++;
@@ -140,7 +167,7 @@ void printEventsAfter1900(Event* head) {
     while (head != NULL)
     {
         if (head->year >= 1900) {
-            gotoxy(10, row);
+            gotoxy(22, row);
             cout << counter << " --> " << head->day << "." << head->month << "." << head->year << " - " << head->whatHappened << endl;
             counter++;
             row++;
@@ -149,24 +176,36 @@ void printEventsAfter1900(Event* head) {
     }
 }
 
+//gets info what is going to be edited
 int еditOptions() {
     int option;
     cout << "Въведете 1 за да промените какво се е случило" << endl;
     cout << "Въведете 2 за да промените деня" << endl;
     cout << "Въведете 3 за да промените месеца" << endl;
     cout << "Въведете 4 за да промените годината" << endl;
-    cout << "Какъв е вашият избор: ";
-    cin >> option;
+    do {
+        cout << endl;
+        cout << "Какъв е вашият избор: ";
+        cin >> option;
+        //if incorrect data is inputted
+        if (option < 1 || option > 4) {
+            cout << "Изглежда сте въвели некоректни данни :(" << endl;
+            cout << "Опитайте отново" << endl << endl;
+        }
+    } while (option < 1 || option > 4);
     return option;
 }
 
+//gets data for the event that is being edited
 void getNewData(int option, Event* head) {
     switch (option) {
+        //the day is going to be edited
     case 2:
         int newDay;
         do {
             cout << "Въведете новия ден: ";
             cin >> newDay;
+            //if incorrect data is inputted
             if (newDay < 1 || newDay > 31) {
                 cout << "Изглежда сте въвели некоректни данни :(" << endl;
                 cout << "Опитайте отново" << endl << endl;
@@ -174,11 +213,13 @@ void getNewData(int option, Event* head) {
         } while (newDay < 1 || newDay > 31);
         head->day = newDay;
         break;
+        //the month is going to be edited
     case 3:
         int newMonth;
         do {
             cout << "Въведете новия месец: ";
             cin >> newMonth;
+            //if incorrect data is inputted
             if (newMonth < 1 || newMonth > 12) {
                 cout << "Изглежда сте въвели некоректни данни :(" << endl;
                 cout << "Опитайте отново" << endl << endl;
@@ -186,11 +227,13 @@ void getNewData(int option, Event* head) {
         } while (newMonth < 1 || newMonth > 12);
         head->month = newMonth;
         break;
+        //the year is going to be edited
     case 4:
         int newYear;
         do {
             cout << "Въведете новата година: ";
             cin >> newYear;
+            //if incorrect data is inputted
             if (newYear < 1 || newYear > 2022) {
                 cout << "Изглежда сте въвели некоректни данни :(" << endl;
                 cout << "Опитайте отново" << endl << endl;
@@ -199,28 +242,22 @@ void getNewData(int option, Event* head) {
         head->year = newYear;
 
         break;
+        // what happened is going to be edited
     case 1:
         string newWhatHappened;
         cout << "Въведете какво се е случило: ";
         cin.ignore();
         getline(cin, newWhatHappened);
+        //to bulgarian
         head->whatHappened = toBG(newWhatHappened);
         break;
     }
 }
 
+//makes a number with witch two events are compared by date
 long int calcDate(Event* event) {
     long int date = event->year * 10000 + event->month * 100 + event->day;
     return date;
-}
-
-int findLinkedListLength(Event* head) {
-    int counter = 1;
-    while (head->next != NULL) {
-        head = head->next;
-        counter++;
-    }
-    return counter;
 }
 
 void swapValues(Event* head, Event* newEvent) {
@@ -240,6 +277,7 @@ void swapValues(Event* head, Event* newEvent) {
     head->whatHappened = tempWhatHappened;
 }
 
+//sorts events in ascending order by date
 void sortEvents(Event* head, Event* newEvent, Event* tail) {
     Event* current = head;
     bool isSorted = false;
@@ -266,6 +304,7 @@ void getNewEvent(Event*& newEvent) {
 
     cout << "Какво се е случило:  ";
     getline(cin, info);
+    //to bulgarian
     newEvent->whatHappened = toBG(info);
 
     cout << endl << "Кога се е случило събитието?" << endl;
@@ -273,6 +312,7 @@ void getNewEvent(Event*& newEvent) {
     do {
         cout << "Ден: ";
         cin >> dateInfo;
+        //if incorrect data is inputted
         if (dateInfo < 1 || dateInfo > 31) {
             cout << "Изглежда сте въвели некоректни данни :(" << endl;
             cout << "Опитайте отново" << endl << endl;
@@ -284,6 +324,7 @@ void getNewEvent(Event*& newEvent) {
         cout << endl;
         cout << "Месец: ";
         cin >> dateInfo;
+        //if incorrect data is inputted
         if (dateInfo < 1 || dateInfo > 12) {
             cout << "Изглежда сте въвели некоректни данни :(" << endl;
             cout << "Опитайте отново" << endl << endl;
@@ -295,6 +336,7 @@ void getNewEvent(Event*& newEvent) {
         cout << endl;
         cout << "Година: ";
         cin >> dateInfo;
+        //if incorrect data is inputted
         if (dateInfo < 1 || dateInfo > 2022) {
             cout << "Изглежда сте въвели некоректни данни :(" << endl;
             cout << "Опитайте отново" << endl << endl;
@@ -310,18 +352,27 @@ Event* findTail(Event* head) {
     return head;
 }
 
+//move the edited event at the end of the list in order the list to be sorted
 void moveToEnd(Event* head, Event* eventToMove) {
     Event* tail = findTail(head);
     Event* current = head;
-    while (current->next != eventToMove && current->next != NULL) {
-        current = current->next;
-    }
-    if (current->next->next == NULL) {
-        current->next = NULL;
-    }
-    else {
+
+    //if the edited event is the first one
+    if (eventToMove == head) {
+        swapValues(current, current->next);
+        eventToMove = current->next;
+        while (current->next != eventToMove && current->next != NULL) {
+            current = current->next;
+        }
         current->next = current->next->next;
     }
+    else {
+        while (current->next != eventToMove && current->next != NULL) {
+            current = current->next;
+        }
+        current->next = current->next->next;
+    }
+
     eventToMove->next = NULL;
     tail->next = eventToMove;
     sortEvents(head, eventToMove, tail);
@@ -367,56 +418,64 @@ void editEvent(Event* head, int eventPosition) {
         counter++;
     }
     getNewData(еditOptions(), current);
-    //not working
     moveToEnd(head, current);
 }
 
+void printLine(int a, int b) {
+    gotoxy(a, b);
+    color(4);
+    cout << "____________________________________________________";
+}
+
+//prints the menu
 void printOptions(Event* head) {
     int Set[] = { 7, 7, 7, 7, 7, 7, 7, 7 };
     int counter = 2;
     char key;
 
+    //infinite loop in order to print the menu untill the option for stopping the programme is selected
     while (1) {
-        /*gotoxy(35, 5);
-        cout << "_____________________________________________";*/
+        printLine(35, 2);
 
-        gotoxy(40, 7);
+        gotoxy(44, 4);
         color(Set[0]);
         cout << "<< Виж списък със всички събития >>";
 
-        gotoxy(40, 8);
+        gotoxy(40, 5);
         color(Set[1]);
-        cout << "<< Виж списък със събитията преди 1900г. >>";
+        cout << "<< Виж списък със събитията преди 1900г.>>";
 
-        gotoxy(40, 9);
+        gotoxy(40, 6);
         color(Set[2]);
         cout << "<< Виж списък със събитията след 1900г. >>";
 
-        gotoxy(48, 10);
+        gotoxy(50, 7);
         color(Set[3]);
         cout << "<< Добави събитие >>";
 
-        gotoxy(47, 11);
+        gotoxy(49, 8);
         color(Set[4]);
         cout << "<< Премахни събитие >>";
 
-        gotoxy(46, 12);
+        gotoxy(48, 9);
         color(Set[5]);
         cout << "<< Редактирай събитие >>";
 
-        gotoxy(45, 13);
+        gotoxy(46, 10);
         color(Set[6]);
         cout << "<< Превръщане в Грей код >>" << endl;
 
-        gotoxy(45, 14);
+        gotoxy(47, 11);
         color(Set[7]);
         cout << "<< Прекрати програмата >>" << endl;
 
-        /*gotoxy(35, 16);
-        cout << "_____________________________________________" << endl;*/
+        printLine(35, 12);
+
+        color(7);
 
         key = _getch();
 
+        cout << endl << endl;
         if (key == 72 && (counter >= 2 && counter <= 8)) {
             counter--;
         }
@@ -424,51 +483,54 @@ void printOptions(Event* head) {
             counter++;
         }
         if (key == '\r') {
+            //print all events option
             if (counter == 1) {
                 system("CLS");
-                //print all events
                 printList(head);
             }
+            //print events before 1900 option
             if (counter == 2) {
                 system("CLS");
-                //print events before 1900
                 printEventsBefore1900(head);
 
             }
+            //print events after 1900 option
             if (counter == 3) {
                 system("CLS");
-                //print events after 1900
                 printEventsAfter1900(head);
             }
+            //add event option
             if (counter == 4) {
-                //add event
                 system("CLS");
                 addNewEvent(head);
                 system("CLS");
             }
+            //remove event option
             if (counter == 5) {
                 system("CLS");
-                //remove event
                 printList(head);
-                removeEvent(head, positionToRemove());
+                removeEvent(head, positionToRemove(head));
                 system("CLS");
             }
+            //edit event option
             if (counter == 6) {
                 system("CLS");
-                //redact event
                 printList(head);
-                editEvent(head, positionToEdit());
+                editEvent(head, positionToEdit(head));
                 system("CLS");
             }
+            //gray code option
             if (counter == 7) {
                 system("CLS");
-                //gray code
-                cout << "Число след преобразуване чрез код на Грей: " << decToGray();
+                cout << "Число след преобразуване чрез код на Грей: " << decToGray() << endl;
+                system("pause");
+                system("CLS");
             }
+            //stop the programme option
             if (counter == 8) {
                 system("CLS");
-                gotoxy(40, 4);
-                cout << "Довиждане! До нови срещи! :)" << endl << endl;
+                gotoxy(47, 4);
+                cout << "До нови срещи! :)" << endl << endl;
                 break;
             }
         }
@@ -506,7 +568,6 @@ void printOptions(Event* head) {
             Set[7] = 12;
         }
     }
-
 }
 
 int main() {
@@ -535,13 +596,12 @@ int main() {
     Event* Head = new Event{ 3, 3, 1878, "Сключване на Сан Стефански мирен договор", secondEvent };
 
     printName();
+    //waits until any button is pressed
     system("pause");
+    //clears the screen
     system("CLS");
+    //starts printing the menu
     printOptions(Head);
-
-    
 
     return 0;
 }
-
-
